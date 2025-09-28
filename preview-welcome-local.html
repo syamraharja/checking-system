@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome - Catatan Keuangan</title>
+    
+    <style>
+        :root {
+            --financial-primary: #2563eb;
+            --financial-secondary: #10b981;
+            --financial-accent: #f59e0b;
+            --financial-dark: #1e293b;
+            --financial-light: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: var(--financial-light);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Navigation */
+        .navbar {
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            padding: 1rem 0;
+        }
+
+        .navbar-brand {
+            font-weight: 700;
+            color: var(--financial-primary) !important;
+            text-decoration: none;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .navbar-brand::before {
+            content: "💰";
+            margin-right: 0.5rem;
+            font-size: 1.5rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--financial-primary) 0%, var(--financial-secondary) 100%);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .hero-icon {
+            font-size: 5rem;
+            margin-bottom: 2rem;
+            color: var(--financial-accent);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-light {
+            background: white;
+            color: var(--financial-primary);
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .btn-outline-light {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-primary {
+            background: var(--financial-primary);
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        /* Features Section */
+        .features {
+            padding: 5rem 0;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 1rem;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-icon.primary { color: var(--financial-primary); }
+        .feature-icon.success { color: var(--financial-secondary); }
+        .feature-icon.warning { color: var(--financial-accent); }
+
+        .feature-card h5 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--financial-dark);
+        }
+
+        .feature-card p {
+            color: #6b7280;
+        }
+
+        /* Stats Section */
+        .stats {
+            background: #f8fafc;
+            padding: 5rem 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-item {
+            padding: 2rem;
+        }
+
+        .stat-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat-icon.primary { color: var(--financial-primary); }
+        .stat-icon.success { color: var(--financial-secondary); }
+        .stat-icon.warning { color: var(--financial-accent); }
+        .stat-icon.info { color: #0ea5e9; }
+
+        .stat-item h4 {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--financial-dark);
+        }
+
+        .stat-item p {
+            color: #6b7280;
+        }
+
+        /* CTA Section */
+        .cta {
+            padding: 5rem 0;
+        }
+
+        .cta-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 1rem;
+            padding: 4rem;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(37, 99, 235, 0.1);
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .cta-icon {
+            font-size: 4rem;
+            color: var(--financial-primary);
+            margin-bottom: 2rem;
+        }
+
+        .cta-card h3 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--financial-dark);
+        }
+
+        .cta-card p {
+            font-size: 1.1rem;
+            color: #6b7280;
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--financial-dark);
+            color: white;
+            padding: 3rem 0;
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .footer h6 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer p {
+            opacity: 0.7;
+            margin: 0;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero p { font-size: 1.1rem; }
+            .btn-group { flex-direction: column; align-items: center; }
+            .footer-content { flex-direction: column; text-align: center; gap: 1rem; }
+            .cta-card { padding: 2rem; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                Catatan Keuangan
+            </a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-icon">📈</div>
+                <h1>Catatan Keuangan</h1>
+                <p>
+                    Platform terpercaya untuk mengelola keuangan Anda dengan mudah dan profesional. 
+                    Kelola akun, kategori, dan transaksi dalam satu dashboard yang komprehensif.
+                </p>
+                
+                <!-- Action Buttons -->
+                <div class="btn-group">
+                    <a href="#" class="btn btn-light">
+                        🔑 Masuk ke Akun
+                    </a>
+                    <a href="#" class="btn btn-outline-light">
+                        👤 Daftar Sekarang
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Section -->
+        <section class="features">
+            <div class="container">
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon primary">💳</div>
+                        <h5>Kelola Akun</h5>
+                        <p>
+                            Atur berbagai akun keuangan Anda dengan mudah. Pantau saldo dan riwayat transaksi dari satu tempat.
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon success">🏷️</div>
+                        <h5>Kategori Transaksi</h5>
+                        <p>
+                            Buat dan kelola kategori transaksi sesuai kebutuhan. Analisis pengeluaran berdasarkan kategori.
+                        </p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon warning">📊</div>
+                        <h5>Dashboard Analitik</h5>
+                        <p>
+                            Lihat ringkasan keuangan, grafik, dan laporan detail untuk memahami pola keuangan Anda.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistics Section -->
+        <section class="stats">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-icon primary">🛡️</div>
+                        <h4>Aman</h4>
+                        <p>Data keuangan Anda terlindungi dengan enkripsi tingkat tinggi</p>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-icon success">⚡</div>
+                        <h4>Cepat</h4>
+                        <p>Interface yang responsif dan performa optimal untuk pengalaman terbaik</p>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-icon warning">📱</div>
+                        <h4>Mobile Friendly</h4>
+                        <p>Akses kapan saja dari perangkat mobile dengan desain responsif</p>
+                    </div>
+                    
+                    <div class="stat-item">
+                        <div class="stat-icon info">📈</div>
+                        <h4>Insights</h4>
+                        <p>Dapatkan wawasan mendalam tentang pola pengeluaran dan pemasukan</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA Section -->
+        <section class="cta">
+            <div class="container">
+                <div class="cta-card">
+                    <div class="cta-icon">🚀</div>
+                    <h3>Mulai Kelola Keuangan Anda Hari Ini</h3>
+                    <p>
+                        Bergabunglah dengan ribuan pengguna yang telah merasakan kemudahan mengelola keuangan dengan platform kami.
+                    </p>
+                    <a href="#" class="btn btn-primary">
+                        ➡️ Mulai Gratis Sekarang
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div>
+                    <h6>Catatan Keuangan</h6>
+                    <p>Platform terpercaya untuk mengelola keuangan Anda.</p>
+                </div>
+                <div>
+                    <p>© 2024 Catatan Keuangan. All rights reserved.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
